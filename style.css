@@ -450,6 +450,8 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .submit-btn:hover:not(:disabled) {
@@ -457,10 +459,33 @@ body {
     box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
 }
 
+.submit-btn:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+}
+
 .submit-btn:disabled {
     background: #ccc;
     cursor: not-allowed;
     opacity: 0.6;
+}
+
+/* 提交按钮点击波纹效果 */
+.submit-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.submit-btn.clicked::after {
+    width: 300px;
+    height: 300px;
 }
 
 /* 立绘选择弹窗 */
@@ -865,6 +890,16 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .modal.hidden {
@@ -878,6 +913,82 @@ body {
     text-align: center;
     max-width: 400px;
     width: 90%;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 成功弹窗特殊样式 */
+.success-modal {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 50px 40px;
+}
+
+.success-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: bounce 0.6s ease infinite alternate;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+.success-modal h3 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.success-message {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    opacity: 0.95;
+}
+
+.success-details {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    backdrop-filter: blur(10px);
+}
+
+.success-details p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.success-modal .close-btn {
+    background: white;
+    color: #667eea;
+    font-weight: bold;
+    margin-top: 25px;
+    padding: 15px 35px;
+    font-size: 1.1rem;
+}
+
+.success-modal .close-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .modal-content h3 {

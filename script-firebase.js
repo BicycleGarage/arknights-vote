@@ -505,6 +505,12 @@ async function submitVote() {
         }
     }
     
+    // 添加按钮点击反馈
+    const submitBtn = document.getElementById('submitVote');
+    submitBtn.classList.add('clicked');
+    submitBtn.textContent = '提交中...';
+    submitBtn.disabled = true;
+    
     try {
         if (useFirebase) {
             await submitVoteToFirebase();
@@ -531,6 +537,18 @@ async function submitVote() {
     } catch (error) {
         console.error('❌ 投票失败:', error);
         alert('投票失败，请重试：' + error.message);
+        
+        // 恢复按钮状态
+        submitBtn.textContent = '提交投票';
+        submitBtn.disabled = false;
+    } finally {
+        // 移除点击效果
+        setTimeout(() => {
+            submitBtn.classList.remove('clicked');
+            if (!submitBtn.disabled) {
+                submitBtn.textContent = '提交投票';
+            }
+        }, 600);
     }
 }
 
