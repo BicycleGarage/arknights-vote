@@ -33,7 +33,8 @@ const operatorsData = [
         rarity: 6,
         artworks: [
             { label: '精一立绘', filename: '立绘_锏_1.png' },
-            { label: '精二立绘', filename: '立绘_锏_2.png' }
+            { label: '精二立绘', filename: '立绘_锏_2.png' },
+            { label: '皮肤', filename: '立绘_锏_skin1.png' }
         ]
     },
     {
@@ -42,7 +43,8 @@ const operatorsData = [
         rarity: 6,
         artworks: [
             { label: '精一立绘', filename: '立绘_止颂_1.png' },
-            { label: '精二立绘', filename: '立绘_止颂_2.png' }
+            { label: '精二立绘', filename: '立绘_止颂_2.png' },
+            { label: '皮肤', filename: '立绘_止颂_skin1.png' }
         ]
     },
     {
@@ -51,7 +53,8 @@ const operatorsData = [
         rarity: 5,
         artworks: [
             { label: '精一立绘', filename: '立绘_折光_1.png' },
-            { label: '精二立绘', filename: '立绘_折光_2.png' }
+            { label: '精二立绘', filename: '立绘_折光_2.png' },
+            { label: '皮肤', filename: '立绘_折光_skin1.png' }
         ]
     },
     {
@@ -60,7 +63,8 @@ const operatorsData = [
         rarity: 6,
         artworks: [
             { label: '精一立绘', filename: '立绘_纯烬艾雅法拉_1.png' },
-            { label: '精二立绘', filename: '立绘_纯烬艾雅法拉_2.png' }
+            { label: '精二立绘', filename: '立绘_纯烬艾雅法拉_2.png' },
+            { label: '皮肤', filename: '立绘_纯烬艾雅法拉_skin1.png' }
         ]
     },
     {
@@ -69,7 +73,8 @@ const operatorsData = [
         rarity: 6,
         artworks: [
             { label: '精一立绘', filename: '立绘_黑键_1.png' },
-            { label: '精二立绘', filename: '立绘_黑键_2.png' }
+            { label: '精二立绘', filename: '立绘_黑键_2.png' },
+            { label: '皮肤', filename: '立绘_黑键_skin1.png' }
         ]
     },
     {
@@ -89,7 +94,8 @@ const operatorsData = [
         rarity: 5,
         artworks: [
             { label: '精一立绘', filename: '立绘_贝娜_1.png' },
-            { label: '精二立绘', filename: '立绘_贝娜_2.png' }
+            { label: '精二立绘', filename: '立绘_贝娜_2.png' },
+            { label: '皮肤', filename: '立绘_贝娜_skin1.png' }
         ]
     },
     {
@@ -98,7 +104,9 @@ const operatorsData = [
         rarity: 5,
         artworks: [
             { label: '精一立绘', filename: '立绘_蜜蜡_1.png' },
-            { label: '精二立绘', filename: '立绘_蜜蜡_2.png' }
+            { label: '精二立绘', filename: '立绘_蜜蜡_2.png' },
+            { label: '皮肤1', filename: '立绘_蜜蜡_skin1.png' },
+            { label: '皮肤2', filename: '立绘_蜜蜡_skin2.png' }
         ]
     },
     {
@@ -107,7 +115,9 @@ const operatorsData = [
         rarity: 6,
         artworks: [
             { label: '精一立绘', filename: '立绘_艾雅法拉_1.png' },
-            { label: '精二立绘', filename: '立绘_艾雅法拉_2.png' }
+            { label: '精二立绘', filename: '立绘_艾雅法拉_2.png' },
+            { label: '皮肤1', filename: '立绘_艾雅法拉_skin1.png' },
+            { label: '皮肤2', filename: '立绘_艾雅法拉_skin2.png' }
         ]
     },
     {
@@ -116,7 +126,8 @@ const operatorsData = [
         rarity: 4,
         artworks: [
             { label: '精一立绘', filename: '立绘_地灵_1.png' },
-            { label: '精二立绘', filename: '立绘_地灵_2.png' }
+            { label: '精二立绘', filename: '立绘_地灵_2.png' },
+            { label: '皮肤', filename: '立绘_地灵_skin1.png' }
         ]
     }
 ];

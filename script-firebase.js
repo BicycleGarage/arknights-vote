@@ -53,6 +53,203 @@ function generateVoteKey(operatorId, filename) {
 }
 
 // ==========================================
+// 图片查看器功能
+// ==========================================
+
+let imageViewerState = {
+    scale: 1,
+    translateX: 0,
+    translateY: 0,
+    isDragging: false,
+    startX: 0,
+    startY: 0
+};
+
+// 打开图片查看器
+function openImageViewer(imageUrl, title) {
+    const viewer = document.createElement('div');
+    viewer.className = 'image-viewer';
+    viewer.id = 'imageViewer';
+    
+    viewer.innerHTML = `
+        <div class="image-viewer-overlay"></div>
+        <div class="image-viewer-container">
+            <div class="image-viewer-header">
+                <h3>${title}</h3>
+                <button class="close-viewer-btn" onclick="closeImageViewer()">✕</button>
+            </div>
+            <div class="image-viewer-content">
+                <img src="${imageUrl}" 
+                     id="viewerImage" 
+                     alt="${title}"
+                     style="transform: scale(1) translate(0px, 0px);">
+            </div>
+            <div class="image-viewer-controls">
+                <button class="control-btn" onclick="zoomOut()" title="缩小">➖</button>
+                <button class="control-btn" onclick="resetZoom()" title="重置">🔄</button>
+                <button class="control-btn" onclick="zoomIn()" title="放大">➕</button>
+            </div>
+            <p class="viewer-hint">💡 提示：鼠标滚轮缩放，拖动移动，双击重置</p>
+        </div>
+    `;
+    
+    document.body.appendChild(viewer);
+    
+    // 重置状态
+    imageViewerState = {
+        scale: 1,
+        translateX: 0,
+        translateY: 0,
+        isDragging: false,
+        startX: 0,
+        startY: 0
+    };
+    
+    // 绑定事件
+    setupImageViewerEvents();
+}
+
+// 关闭图片查看器
+function closeImageViewer() {
+    const viewer = document.getElementById('imageViewer');
+    if (viewer) {
+        viewer.remove();
+    }
+}
+
+// 设置查看器事件
+function setupImageViewerEvents() {
+    const viewer = document.getElementById('imageViewer');
+    const overlay = viewer.querySelector('.image-viewer-overlay');
+    const img = document.getElementById('viewerImage');
+    const content = viewer.querySelector('.image-viewer-content');
+    
+    // 点击背景关闭
+    overlay.addEventListener('click', closeImageViewer);
+    
+    // 鼠标滚轮缩放
+    content.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.1 : 0.1;
+        zoom(delta);
+    });
+    
+    // 双击重置
+    content.addEventListener('dblclick', resetZoom);
+    
+    // 鼠标拖动
+    content.addEventListener('mousedown', (e) => {
+        if (e.button === 0) { // 左键
+            imageViewerState.isDragging = true;
+            imageViewerState.startX = e.clientX - imageViewerState.translateX;
+            imageViewerState.startY = e.clientY - imageViewerState.translateY;
+            content.style.cursor = 'grabbing';
+        }
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+        if (imageViewerState.isDragging) {
+            imageViewerState.translateX = e.clientX - imageViewerState.startX;
+            imageViewerState.translateY = e.clientY - imageViewerState.startY;
+            updateImageTransform();
+        }
+    });
+    
+    document.addEventListener('mouseup', () => {
+        imageViewerState.isDragging = false;
+        content.style.cursor = 'grab';
+    });
+    
+    // 触摸事件（移动端）
+    let lastTouchDistance = 0;
+    
+    content.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+            imageViewerState.isDragging = true;
+            imageViewerState.startX = e.touches[0].clientX - imageViewerState.translateX;
+            imageViewerState.startY = e.touches[0].clientY - imageViewerState.translateY;
+        } else if (e.touches.length === 2) {
+            lastTouchDistance = getTouchDistance(e.touches);
+        }
+    });
+    
+    content.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        
+        if (e.touches.length === 1 && imageViewerState.isDragging) {
+            imageViewerState.translateX = e.touches[0].clientX - imageViewerState.startX;
+            imageViewerState.translateY = e.touches[0].clientY - imageViewerState.startY;
+            updateImageTransform();
+        } else if (e.touches.length === 2) {
+            const distance = getTouchDistance(e.touches);
+            const delta = (distance - lastTouchDistance) * 0.01;
+            zoom(delta);
+            lastTouchDistance = distance;
+        }
+    });
+    
+    content.addEventListener('touchend', () => {
+        imageViewerState.isDragging = false;
+    });
+    
+    // ESC 键关闭
+    document.addEventListener('keydown', handleViewerKeydown);
+}
+
+// 处理键盘事件
+function handleViewerKeydown(e) {
+    if (e.key === 'Escape') {
+        closeImageViewer();
+    } else if (e.key === '+' || e.key === '=') {
+        zoomIn();
+    } else if (e.key === '-') {
+        zoomOut();
+    } else if (e.key === '0') {
+        resetZoom();
+    }
+}
+
+// 获取触摸距离
+function getTouchDistance(touches) {
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+// 缩放
+function zoom(delta) {
+    const newScale = Math.max(0.5, Math.min(5, imageViewerState.scale + delta));
+    imageViewerState.scale = newScale;
+    updateImageTransform();
+}
+
+// 放大
+function zoomIn() {
+    zoom(0.2);
+}
+
+// 缩小
+function zoomOut() {
+    zoom(-0.2);
+}
+
+// 重置缩放
+function resetZoom() {
+    imageViewerState.scale = 1;
+    imageViewerState.translateX = 0;
+    imageViewerState.translateY = 0;
+    updateImageTransform();
+}
+
+// 更新图片变换
+function updateImageTransform() {
+    const img = document.getElementById('viewerImage');
+    if (img) {
+        img.style.transform = `scale(${imageViewerState.scale}) translate(${imageViewerState.translateX / imageViewerState.scale}px, ${imageViewerState.translateY / imageViewerState.scale}px)`;
+    }
+}
+
+// ==========================================
 // 渲染功能
 // ==========================================
 
@@ -82,13 +279,18 @@ function createOperatorCard(operator) {
             <span class="operator-name">${operator.name}</span>
             <span class="rarity-badge ${rarityClass}">${'★'.repeat(operator.rarity)}</span>
         </div>
-        <img src="${imageUrl}" 
-             alt="${operator.name}" 
-             class="operator-image"
-             loading="lazy"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="operator-image-placeholder" style="display:none;">
-            📷 ${operator.name}立绘
+        <div class="image-container">
+            <img src="${imageUrl}" 
+                 alt="${operator.name}" 
+                 class="operator-image"
+                 loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="operator-image-placeholder" style="display:none;">
+                📷 ${operator.name}立绘
+            </div>
+            <button class="zoom-btn" onclick="event.stopPropagation(); openImageViewer('${imageUrl}', '${operator.name}')" title="查看大图">
+                🔍
+            </button>
         </div>
         <p style="color: #666; font-size: 0.9rem;">点击选择干员</p>
     `;
@@ -125,9 +327,14 @@ function showArtworkModal(operator) {
             <div class="artwork-option" data-index="${index}">
                 <div class="artwork-label">${artwork.label}</div>
                 <div class="artwork-filename">${artwork.filename}</div>
-                <img src="${imageUrl}" 
-                     style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-top: 8px;"
-                     onerror="this.style.display='none'">
+                <div class="image-container">
+                    <img src="${imageUrl}" 
+                         style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 5px; margin-top: 8px;"
+                         onerror="this.style.display='none'">
+                    <button class="zoom-btn" onclick="event.stopPropagation(); openImageViewer('${imageUrl}', '${artwork.label}')" title="查看大图">
+                        🔍
+                    </button>
+                </div>
             </div>
         `;
     }).join('');
