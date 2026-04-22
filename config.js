@@ -52,14 +52,14 @@ function initFirebase() {
   try {
     // 检查Firebase是否已加载
     if (typeof firebase === 'undefined') {
-      console.warn('Firebase SDK未加载，使用LocalStorage模式');
+      console.warn('⚠️ Firebase SDK未加载，使用LocalStorage模式');
       return null;
     }
     
-    // 检查配置是否已更新
-    if (firebaseConfig.apiKey === 'YOUR_API_KEY_HERE') {
-      console.warn('Firebase配置未设置，使用LocalStorage模式');
-      console.info('请在config.js中填入你的Firebase配置');
+    // 检查配置是否已更新（使用占位符检测）
+    if (firebaseConfig.apiKey === 'YOUR_API_KEY_HERE' || !firebaseConfig.apiKey) {
+      console.warn('⚠️ Firebase配置未设置，使用LocalStorage模式');
+      console.info('📝 请在config.js中填入你的Firebase配置');
       return null;
     }
     
@@ -68,10 +68,14 @@ function initFirebase() {
     database = firebase.database();
     
     console.log('✅ Firebase初始化成功');
+    console.log('📍 数据库URL:', firebaseConfig.databaseURL);
+    console.log('🌏 数据库区域:', firebaseConfig.databaseURL.includes('asia-southeast1') ? '新加坡' : 
+                firebaseConfig.databaseURL.includes('asia-east1') ? '台湾' : '其他');
     return database;
     
   } catch (error) {
     console.error('❌ Firebase初始化失败:', error);
+    console.warn('⚠️ 降级到LocalStorage模式');
     return null;
   }
 }
@@ -111,6 +115,24 @@ function getImageUrl(filename) {
   return `${IMAGE_CDN_BASE}/${filename}`;
 }
 
+// 测试图片URL（仅在控制台输出）
+function testImageUrl() {
+  if (typeof operatorsData !== 'undefined' && operatorsData.length > 0) {
+    const testImage = getImageUrl(operatorsData[0].artworks[0].filename);
+    console.log('🖼️ 测试图片URL:', testImage);
+    console.log('🔗 直接访问:', testImage);
+  }
+}
+
+// 测试图片URL（仅在控制台输出）
+function testImageUrl() {
+  if (typeof operatorsData !== 'undefined' && operatorsData.length > 0) {
+    const testImage = getImageUrl(operatorsData[0].artworks[0].filename);
+    console.log('🖼️ 测试图片URL:', testImage);
+    console.log('🔗 直接访问:', testImage);
+  }
+}
+
 // ==========================================
 // 导出配置
 // ==========================================
@@ -118,7 +140,11 @@ function getImageUrl(filename) {
 // 初始化Firebase并导出
 const db = initFirebase();
 
-console.log('📝 配置信息:');
+console.log('\n📝 ====== 配置信息 ======');
 console.log('- 图片CDN:', IMAGE_CDN_BASE);
-console.log('- Firebase:', db ? '已启用' : '未启用（使用LocalStorage）');
+console.log('- Firebase:', db ? '✅ 已启用' : '⚠️ 未启用（使用LocalStorage）');
 console.log('- 投票冷却:', VOTE_COOLDOWN_HOURS, '小时');
+console.log('=========================\n');
+
+// 测试图片URL
+testImageUrl();

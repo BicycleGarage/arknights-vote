@@ -20,6 +20,39 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================
+// 工具函数
+// ==========================================
+
+// 转义Firebase键名中的特殊字符
+// Firebase不允许: . # $ / [ ]
+function escapeFirebaseKey(key) {
+    return key
+        .replace(/\./g, '_dot_')
+        .replace(/#/g, '_hash_')
+        .replace(/\$/g, '_dollar_')
+        .replace(/\//g, '_slash_')
+        .replace(/\[/g, '_open_')
+        .replace(/\]/g, '_close_');
+}
+
+// 反转义Firebase键名
+function unescapeFirebaseKey(key) {
+    return key
+        .replace(/_dot_/g, '.')
+        .replace(/_hash_/g, '#')
+        .replace(/_dollar_/g, '$')
+        .replace(/_slash_/g, '/')
+        .replace(/_open_/g, '[')
+        .replace(/_close_/g, ']');
+}
+
+// 生成投票键名（已转义）
+function generateVoteKey(operatorId, filename) {
+    const rawKey = `${operatorId}_${filename}`;
+    return escapeFirebaseKey(rawKey);
+}
+
+// ==========================================
 // 渲染功能
 // ==========================================
 
@@ -288,7 +321,8 @@ async function submitVoteToFirebase() {
     const timestamp = Date.now();
     
     selectedOperators.forEach((value, key) => {
-        const voteKey = `${key}_${value.artwork.filename}`;
+        // 使用转义后的键名
+        const voteKey = generateVoteKey(key, value.artwork.filename);
         
         // 增加投票计数
         updates[`votes/${voteKey}/count`] = firebase.database.ServerValue.increment(1);
@@ -370,8 +404,9 @@ function loadStatisticsFromFirebase() {
             
             const operatorStat = statsMap.get(vote.operatorId);
             
-            // 获取该立绘的票数
-            database.ref(`votes/${vote.operatorId}_${vote.artworkFilename}/count`).once('value', (countSnapshot) => {
+            // 使用转义后的键名获取该立绘的票数
+            const escapedKey = generateVoteKey(vote.operatorId, vote.artworkFilename);
+            database.ref(`votes/${escapedKey}/count`).once('value', (countSnapshot) => {
                 const count = countSnapshot.val() || 0;
                 
                 // 更新立绘票数
