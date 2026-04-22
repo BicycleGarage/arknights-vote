@@ -12,6 +12,14 @@
         <header class="header">
             <h1>🐑 明日方舟羊年窗花投票 🐑</h1>
             <p class="subtitle">选择你希望在明年阳台门上看到的干员窗花</p>
+            
+            <!-- 醒目提醒 -->
+            <div class="multi-select-notice">
+                <span class="notice-icon">✨</span>
+                <span class="notice-text">可多选！可多选！可多选！</span>
+                <span class="notice-icon">✨</span>
+            </div>
+            
             <div class="info-box">
                 <p>今年是马年：玛恩纳、耀骑士临光、鞭刃、瑕光</p>
                 <p>明年是羊年，快来为你喜欢的羊角干员投票吧！</p>
@@ -75,6 +83,56 @@
             <p>数据来源：<a href="https://prts.wiki/w/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88#?race=1-%E5%8D%A1%E6%99%AE%E9%87%8C%E5%B0%BC" target="_blank">PRTS Wiki</a></p>
             <p>© 2026 明日方舟粉丝制作</p>
         </footer>
+    </div>
+
+    <!-- 改动日志按钮 -->
+    <button class="changelog-toggle-btn" onclick="toggleChangelog()" title="查看更新日志">
+        📝
+    </button>
+
+    <!-- 改动日志面板 -->
+    <div id="changelogPanel" class="changelog-panel hidden">
+        <div class="changelog-header">
+            <h3>📋 更新日志</h3>
+            <button class="close-changelog-btn" onclick="toggleChangelog()">✕</button>
+        </div>
+        <div class="changelog-content">
+            <div class="changelog-item">
+                <div class="changelog-version">v1.3 - 2026-04-22</div>
+                <ul>
+                    <li>✨ 新增皮肤详细名称显示</li>
+                    <li>🖼️ 添加今年窗花照片展示</li>
+                    <li>🔍 所有图片支持放大查看（拖动/缩放）</li>
+                    <li>📱 优化移动端体验</li>
+                </ul>
+            </div>
+            <div class="changelog-item">
+                <div class="changelog-version">v1.2 - 2026-04-22</div>
+                <ul>
+                    <li>🎨 所有图片改为正方形显示</li>
+                    <li>📸 为10位干员添加皮肤立绘选项</li>
+                    <li>🔧 修复 Firebase 键名特殊字符问题</li>
+                </ul>
+            </div>
+            <div class="changelog-item">
+                <div class="changelog-version">v1.1 - 2026-04-22</div>
+                <ul>
+                    <li>🚀 部署到 GitHub Pages</li>
+                    <li>☁️ 集成 Firebase 实时数据库</li>
+                    <li>🌐 使用 jsDelivr CDN 加速图片</li>
+                    <li>✅ 实现多人实时投票功能</li>
+                </ul>
+            </div>
+            <div class="changelog-item">
+                <div class="changelog-version">v1.0 - 2026-04-22</div>
+                <ul>
+                    <li>🎉 初始版本发布</li>
+                    <li>🐑 13位羊角干员投票</li>
+                    <li>📊 实时统计面板</li>
+                    <li>💾 LocalStorage 本地存储</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <!-- Firebase SDK（可选，用于多人投票） -->

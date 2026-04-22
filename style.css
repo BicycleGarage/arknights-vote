@@ -53,6 +53,56 @@ body {
     font-size: 0.95rem;
 }
 
+/* 醒目提醒 */
+.multi-select-notice {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    margin: 20px auto;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 25px rgba(255, 107, 107, 0.6);
+    }
+}
+
+.notice-icon {
+    font-size: 1.5rem;
+    animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+    50% {
+        opacity: 0.7;
+        transform: rotate(180deg);
+    }
+}
+
+.notice-text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 /* 今年窗花展示 */
 .current-year-showcase {
     margin-top: 30px;
@@ -668,6 +718,141 @@ body {
     margin: 0;
 }
 
+/* ==========================================
+   改动日志
+   ========================================== */
+
+.changelog-toggle-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.changelog-toggle-btn:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
+}
+
+.changelog-toggle-btn:active {
+    transform: scale(0.95);
+}
+
+.changelog-panel {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 400px;
+    max-height: 500px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.changelog-panel.hidden {
+    display: none;
+}
+
+.changelog-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.changelog-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.close-changelog-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-changelog-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.changelog-content {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.changelog-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.changelog-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.changelog-version {
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.changelog-item ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.changelog-item li {
+    margin: 8px 0;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
 /* 成功弹窗 */
 .modal {
     position: fixed;
@@ -813,6 +998,38 @@ body {
     
     .showcase-image-container {
         max-width: 100%;
+    }
+    
+    /* 醒目提醒移动端优化 */
+    .multi-select-notice {
+        padding: 12px 20px;
+        margin: 15px auto;
+    }
+    
+    .notice-text {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+    
+    .notice-icon {
+        font-size: 1.2rem;
+    }
+    
+    /* 改动日志移动端优化 */
+    .changelog-toggle-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .changelog-panel {
+        width: calc(100% - 40px);
+        right: 20px;
+        left: 20px;
+        bottom: 80px;
+        max-height: 60vh;
     }
 }
 

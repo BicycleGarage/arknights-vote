@@ -474,6 +474,18 @@ function setupEventListeners() {
 }
 
 // ==========================================
+// 改动日志功能
+// ==========================================
+
+// 切换改动日志显示/隐藏
+function toggleChangelog() {
+    const panel = document.getElementById('changelogPanel');
+    if (panel) {
+        panel.classList.toggle('hidden');
+    }
+}
+
+// ==========================================
 // 投票功能
 // ==========================================
 
