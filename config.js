@@ -20,7 +20,7 @@ const firebaseConfig = {
 
 // 方案1：jsDelivr + GitHub（推荐，完全免费）
 // 格式：https://cdn.jsdelivr.net/gh/用户名/仓库名@版本/路径
-const IMAGE_CDN_BASE = 'https://cdn.jsdelivr.net/gh/YOUR_USERNAME/arknights-vote@main/images';
+const IMAGE_CDN_BASE = 'https://cdn.jsdelivr.net/gh/BicycleGarage/arknights-vote-copy@v1.0/images';
 
 // 方案2：阿里云OSS（如果你使用阿里云，速度更快）
 // 取消下面这行的注释，并替换为你的OSS地址
