@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>明日方舟 - 羊年窗花投票</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <h1>🐑 明日方舟羊年窗花投票 🐑</h1>
+            <p class="subtitle">选择你希望在明年阳台门上看到的干员窗花</p>
+            <div class="info-box">
+                <p>今年是马年：玛恩纳、耀骑士临光、鞭刃、瑕光</p>
+                <p>明年是羊年，快来为你喜欢的羊角干员投票吧！</p>
+            </div>
+        </header>
+
+        <!-- 统计面板 -->
+        <section class="statistics-panel">
+            <h2>📊 投票统计</h2>
+            <div id="statsContainer" class="stats-container">
+                <p class="loading-text">加载中...</p>
+            </div>
+        </section>
+
+        <!-- 投票区域 -->
+        <main class="voting-area">
+            <h2>✨ 选择干员与立绘</h2>
+            <p class="hint">提示：可以选择多个干员，每个干员可以指定不同的立绘</p>
+            
+            <!-- 干员列表 -->
+            <div id="operatorsList" class="operators-grid">
+                <!-- 干员卡片将通过JavaScript动态生成 -->
+            </div>
+
+            <!-- 已选干员预览 -->
+            <section class="selected-preview">
+                <h3>🎯 已选择的干员</h3>
+                <div id="selectedOperators" class="selected-list">
+                    <p class="empty-hint">尚未选择任何干员</p>
+                </div>
+                <button id="submitVote" class="submit-btn" disabled>提交投票</button>
+            </section>
+        </main>
+
+        <!-- 投票成功提示 -->
+        <div id="successModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>✅ 投票成功！</h3>
+                <p>感谢你的参与！</p>
+                <button id="closeModal" class="close-btn">关闭</button>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>数据来源：<a href="https://prts.wiki/w/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88#?race=1-%E5%8D%A1%E6%99%AE%E9%87%8C%E5%B0%BC" target="_blank">PRTS Wiki</a></p>
+            <p>© 2026 明日方舟粉丝制作</p>
+        </footer>
+    </div>
+
+    <!-- Firebase SDK（可选，用于多人投票） -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <script src="data.js"></script>
+    <script src="config.js"></script>
+    <script src="script-firebase.js"></script>
+</body>
+</html>
