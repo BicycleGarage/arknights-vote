@@ -34,7 +34,7 @@ const IMAGE_CDN_BASE = 'https://cdn.jsdelivr.net/gh/BicycleGarage/arknights-vote
 // ==========================================
 
 // 投票间隔时间（小时）
-const VOTE_COOLDOWN_HOURS = 24;
+const VOTE_COOLDOWN_HOURS = 20;
 
 // localStorage键名
 const STORAGE_KEYS = {
