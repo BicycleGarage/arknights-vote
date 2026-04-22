@@ -5,13 +5,13 @@
 // Firebase配置
 // ⚠️ 重要：请将下面的配置替换为你从Firebase Console获取的真实配置
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY_HERE",
-  authDomain: "your-project.firebaseapp.com",
-  databaseURL: "https://your-project-default-rtdb.asia-east1.firebasedatabase.app",
-  projectId: "your-project",
-  storageBucket: "your-project.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef123456"
+    apiKey: "AIzaSyBUYCvRJkghkoPEcR31dJF8TiS-HbRG274",
+    authDomain: "arknights-vote.firebaseapp.com",
+    databaseURL: "https://arknights-vote-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "arknights-vote",
+    storageBucket: "arknights-vote.firebasestorage.app",
+    messagingSenderId: "458640774213",
+    appId: "1:458640774213:web:ad1f86986211765128bf2c"
 };
 
 // ==========================================
