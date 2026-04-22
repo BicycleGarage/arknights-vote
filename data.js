@@ -34,7 +34,7 @@ const operatorsData = [
         artworks: [
             { label: '精一立绘', filename: '立绘_锏_1.png' },
             { label: '精二立绘', filename: '立绘_锏_2.png' },
-            { label: '皮肤', filename: '立绘_锏_skin1.png' }
+            { label: '皮肤 - [异巫盛宴/WITCH FEAST] 暗月的影子', filename: '立绘_锏_skin1.png' }
         ]
     },
     {
@@ -44,7 +44,7 @@ const operatorsData = [
         artworks: [
             { label: '精一立绘', filename: '立绘_止颂_1.png' },
             { label: '精二立绘', filename: '立绘_止颂_2.png' },
-            { label: '皮肤', filename: '立绘_止颂_skin1.png' }
+            { label: '皮肤 - [0011-飙系列] 幻火', filename: '立绘_止颂_skin1.png' }
         ]
     },
     {
@@ -54,7 +54,7 @@ const operatorsData = [
         artworks: [
             { label: '精一立绘', filename: '立绘_折光_1.png' },
             { label: '精二立绘', filename: '立绘_折光_2.png' },
-            { label: '皮肤', filename: '立绘_折光_skin1.png' }
+            { label: '皮肤 - [时代/EPOQUE] 斜照', filename: '立绘_折光_skin1.png' }
         ]
     },
     {
@@ -64,7 +64,7 @@ const operatorsData = [
         artworks: [
             { label: '精一立绘', filename: '立绘_纯烬艾雅法拉_1.png' },
             { label: '精二立绘', filename: '立绘_纯烬艾雅法拉_2.png' },
-            { label: '皮肤', filename: '立绘_纯烬艾雅法拉_skin1.png' }
+            { label: '皮肤 - [时代/EPOQUE] 远行前的野餐', filename: '立绘_纯烬艾雅法拉_skin1.png' }
         ]
     },
     {
@@ -74,7 +74,7 @@ const operatorsData = [
         artworks: [
             { label: '精一立绘', filename: '立绘_黑键_1.png' },
             { label: '精二立绘', filename: '立绘_黑键_2.png' },
-            { label: '皮肤', filename: '立绘_黑键_skin1.png' }
+            { label: '皮肤 - [斗争血脉/BLOODLINE OF COMBAT] 变奏', filename: '立绘_黑键_skin1.png' }
         ]
     },
     {
@@ -84,8 +84,8 @@ const operatorsData = [
         artworks: [
             { label: '精一立绘', filename: '立绘_卡涅利安_1.png' },
             { label: '精二立绘', filename: '立绘_卡涅利安_2.png' },
-            { label: '皮肤1', filename: '立绘_卡涅利安_skin1.png' },
-            { label: '皮肤2', filename: '立绘_卡涅利安_skin2.png' }
+            { label: '皮肤1 - [冰原信使/Icefield Messenger] 霍恩洛厄的寒沙', filename: '立绘_卡涅利安_skin1.png' },
+            { label: '皮肤2 - [珊瑚海岸/CoralCoast] 灿阳朝露 SD08', filename: '立绘_卡涅利安_skin2.png' }
         ]
     },
     {
@@ -95,7 +95,7 @@ const operatorsData = [
         artworks: [
             { label: '精一立绘', filename: '立绘_贝娜_1.png' },
             { label: '精二立绘', filename: '立绘_贝娜_2.png' },
-            { label: '皮肤', filename: '立绘_贝娜_skin1.png' }
+            { label: '皮肤 - [0011制造] 草原小帮手', filename: '立绘_贝娜_skin1.png' }
         ]
     },
     {
@@ -105,8 +105,8 @@ const operatorsData = [
         artworks: [
             { label: '精一立绘', filename: '立绘_蜜蜡_1.png' },
             { label: '精二立绘', filename: '立绘_蜜蜡_2.png' },
-            { label: '皮肤1', filename: '立绘_蜜蜡_skin1.png' },
-            { label: '皮肤2', filename: '立绘_蜜蜡_skin2.png' }
+            { label: '皮肤1 - [时代/EPOQUE] 白沙', filename: '立绘_蜜蜡_skin1.png' },
+            { label: '皮肤2 - [珊瑚海岸/CoralCoast] 悠然假日 HD61', filename: '立绘_蜜蜡_skin2.png' }
         ]
     },
     {
@@ -116,8 +116,8 @@ const operatorsData = [
         artworks: [
             { label: '精一立绘', filename: '立绘_艾雅法拉_1.png' },
             { label: '精二立绘', filename: '立绘_艾雅法拉_2.png' },
-            { label: '皮肤1', filename: '立绘_艾雅法拉_skin1.png' },
-            { label: '皮肤2', filename: '立绘_艾雅法拉_skin2.png' }
+            { label: '皮肤1 - [珊瑚海岸/CoralCoast] 夏卉 FA018', filename: '立绘_艾雅法拉_skin1.png' },
+            { label: '皮肤2 - [合作款/CROSSOVER] 绵绒小魔女', filename: '立绘_艾雅法拉_skin2.png' }
         ]
     },
     {
@@ -127,7 +127,7 @@ const operatorsData = [
         artworks: [
             { label: '精一立绘', filename: '立绘_地灵_1.png' },
             { label: '精二立绘', filename: '立绘_地灵_2.png' },
-            { label: '皮肤', filename: '立绘_地灵_skin1.png' }
+            { label: '皮肤 - [时代/EPOQUE] 主修领域', filename: '立绘_地灵_skin1.png' }
         ]
     }
 ];
