@@ -103,6 +103,61 @@ body {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* 冷却时间提醒 */
+.cooldown-notice {
+    background: linear-gradient(135deg, #FFA500 0%, #FF6347 100%);
+    color: white;
+    padding: 18px 30px;
+    border-radius: 30px;
+    margin: 20px auto;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    box-shadow: 0 6px 20px rgba(255, 165, 0, 0.5);
+    animation: cooldown-pulse 2.5s ease-in-out infinite;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes cooldown-pulse {
+    0%, 100% {
+        transform: scale(1) translateY(0);
+        box-shadow: 0 6px 20px rgba(255, 165, 0, 0.5);
+    }
+    50% {
+        transform: scale(1.05) translateY(-3px);
+        box-shadow: 0 10px 30px rgba(255, 165, 0, 0.7);
+    }
+}
+
+.cooldown-notice .notice-icon {
+    font-size: 1.8rem;
+    animation: cooldown-bounce 1s ease-in-out infinite;
+}
+
+@keyframes cooldown-bounce {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    25% {
+        transform: translateY(-8px) scale(1.1);
+    }
+    50% {
+        transform: translateY(0) scale(1);
+    }
+    75% {
+        transform: translateY(-4px) scale(1.05);
+    }
+}
+
+.cooldown-notice .notice-text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
 /* 今年窗花展示 */
 .current-year-showcase {
     margin-top: 30px;
@@ -1124,6 +1179,23 @@ body {
     
     .notice-icon {
         font-size: 1.2rem;
+    }
+    
+    /* 冷却提醒移动端优化 */
+    .cooldown-notice {
+        padding: 15px 20px;
+        margin: 15px auto;
+        max-width: 90%;
+        border-width: 2px;
+    }
+    
+    .cooldown-notice .notice-text {
+        font-size: 1.05rem;
+        letter-spacing: 1px;
+    }
+    
+    .cooldown-notice .notice-icon {
+        font-size: 1.4rem;
     }
     
     /* 改动日志移动端优化 */
